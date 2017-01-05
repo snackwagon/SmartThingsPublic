@@ -34,12 +34,12 @@ preferences {
         input "trigger_motion", "capability.motionSensor", required: true, title: "Select a trigger sensor.."
     }
     /*
-    section("Turn on these lights") {
-        input "switches", "capability.switch", required: true, multiple: true, title: "Select lights.."
+    section("These lights will turn on, select them below") {
+        input "switches", "capability.switch", required: true, multiple: true, readonly: true
     }
     */
     section("Wait how many seconds for override?") {
-    	input "quick_delay", "number", range: "0..600", required: true
+    	input "quick_delay", "number", range: "0..500", required: true
     }    
     section("Once motion ends, wait how many seconds?") {
     	input "quiet_delay", "number", range: "0..600", required: true
@@ -71,11 +71,9 @@ def updated() {
 def initialize() {
 	log.debug "Initialized"
     subscribe(trigger_motion, "motion.active", triggerMotionDetectedHandler)
-
-	// TODO: subscribe to attributes, devices, locations, etc.
 }
 
-// TODO: implement event handlers
+// Event handlers
 
 def triggerMotionDetectedHandler(evt) {
     log.debug "triggerMotionDetectedHandler called: $evt"
@@ -88,7 +86,7 @@ def triggerMotionDetectedHandler(evt) {
     subscribe(trigger_motion, "motion.inactive", triggerInactiveDetectedHandler)
     runIn(quick_delay, afterQuickDelay)
 }
-dms
+
 def triggerInactiveDetectedHandler(evt) {
     log.debug "overrideMotionDetectedHandler called: $evt"
     runIn(quiet_delay, afterQuietDelay)

@@ -17,7 +17,7 @@ definition(
     name: "Predictive Lighting",
     namespace: "snackwagon",
     author: "Phil Burch",
-    description: "Control lights based on several sensors",
+    description: "Turn on lights based on a trigger sensor. Turn off some of those lights if another sensor doesn't trigger within a specified delay. Turn off the rest of the referenced lights after another specified delay. Light controls for the 'another' sensor are yours to control.",
     category: "Convenience",
         iconUrl: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience.png",
     	iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png",

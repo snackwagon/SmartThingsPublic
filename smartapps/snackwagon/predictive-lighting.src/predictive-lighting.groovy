@@ -119,8 +119,13 @@ def afterQuietDelay() {
 
     always_switches.off()
     
-    unsubscribe(override_motion, "motion.active") //, overrideMotionDetectedHandler)
-    unsubscribe(trigger_motion, "motion.inactive") //	, triggerInactiveDetectedHandler)
     state.overrideCancelled = false
     state.currentlyRunning == false
+    try {
+    	unsubscribe(override_motion, "motion.active") //, overrideMotionDetectedHandler)
+        unsubscribe(trigger_motion, "motion.inactive") //	, triggerInactiveDetectedHandler)
+    }
+    catch (et) {
+    	log.debug et
+    }
 }
